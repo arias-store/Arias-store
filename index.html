@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff5fa">
+<title>Aria's Store</title>
+<style>
+:root{--pink:#f5c6dc;--pink2:#fff0f7;--hot:#c65f91;--ink:#55414b;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#fffafd;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{padding:28px 18px 34px;text-align:center;background:linear-gradient(145deg,#fff7fb,#f8d9e8);border-bottom:1px solid #f1d6e3}
+.logo{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#fff;color:var(--hot);font-size:30px;box-shadow:0 5px 18px #dca6c455}
+.brand{font-family:Georgia,serif;font-size:clamp(32px,8vw,48px);margin:12px 0 7px;color:#9f4c74;font-weight:normal}
+.tagline{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#98677e}
+main{max-width:720px;margin:0 auto;padding:24px 16px 46px}
+.intro{text-align:center;margin:0 auto 25px;max-width:500px;line-height:1.65}
+h2{font-family:Georgia,serif;font-size:27px;font-weight:normal;color:#9f4c74;text-align:center;margin:18px 0}
+.pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 28px}
+.pill{border:1px solid #f0ccdd;border-radius:999px;padding:9px 14px;background:#fff;font-size:13px}
+.panel{background:white;border:1px solid #f0d8e4;border-radius:22px;padding:22px;box-shadow:0 10px 30px #b95b8310}
+label{display:block;font-size:14px;font-weight:bold;margin:15px 0 7px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);border:1px solid #e8cbd9;background:#fffafd;border-radius:12px;padding:13px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#c65f91;box-shadow:0 0 0 3px #f5c6dc55}
+textarea{min-height:105px;resize:vertical}
+button,.whatsapp{display:block;width:100%;border:0;border-radius:999px;padding:15px 18px;margin-top:20px;background:#c65f91;color:white;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
+button:hover,.whatsapp:hover{background:#ad477a}
+.note{text-align:center;font-size:12px;line-height:1.5;color:#927b87;margin:14px 5px 0}
+footer{text-align:center;padding:20px;background:#fff0f7;font-size:12px;color:#98677e}
+.sparkle{color:#c65f91}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-hidden="true">♡</div>
+  <div class="brand">Aria's Store</div>
+  <div class="tagline">feito com carinho ✧</div>
+</header>
+<main>
+  <p class="intro">Seja bem-vinda à <strong>Aria's Store</strong>! ♡<br>Escolha o que você deseja encomendar e envie seu pedido diretamente pelo WhatsApp.</p>
+  <div class="pills"><span class="pill">♡ Atendimento personalizado</span><span class="pill">✧ Encomendas pelo WhatsApp</span><span class="pill">୨୧ Rosa & branco</span></div>
+  <h2>Faça sua encomenda</h2>
+  <section class="panel">
+    <form id="orderForm">
+      <label for="name">Seu nome</label>
+      <input id="name" name="name" autocomplete="name" placeholder="Como podemos te chamar?" required>
+      <label for="item">O que você deseja encomendar?</label>
+      <select id="item" name="item" required>
+        <option value="">Selecione uma opção</option>
+        <option>GFX</option><option>Edit</option><option>Card</option><option>Banner</option><option>Logo</option><option>Outro</option>
+      </select>
+      <label for="inspiration">Inspiração ou detalhes do pedido</label>
+      <textarea id="inspiration" name="inspiration" placeholder="Conte as cores, estilo, referências e o que você imaginou..." required></textarea>
+      <label for="deadline">Prazo desejado (opcional)</label>
+      <input id="deadline" name="deadline" placeholder="Ex.: até sexta-feira">
+      <label for="budget">Orçamento (opcional)</label>
+      <input id="budget" name="budget" placeholder="Ex.: R$ 10">
+      <button type="submit">Enviar pedido pelo WhatsApp ♡</button>
+      <p class="note">Ao tocar no botão, o WhatsApp será aberto com os detalhes do pedido para você conferir e enviar.</p>
+    </form>
+  </section>
+</main>
+<footer>Aria's Store · obrigada por apoiar meu trabalho ♡</footer>
+<script>
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const get = id => document.getElementById(id).value.trim();
+  const message = [
+    "Olá! Vim pelo site da Aria's Store e gostaria de fazer uma encomenda. ♡",
+    "",
+    "Nome: " + get('name'),
+    "Pedido: " + get('item'),
+    "Inspiração/detalhes: " + get('inspiration'),
+    get('deadline') ? "Prazo desejado: " + get('deadline') : "",
+    get('budget') ? "Orçamento: " + get('budget') : ""
+  ].filter(Boolean).join("\n");
+  const phone = "5598985104005";
+  window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+});
+</script>
+</body>
+</html>
